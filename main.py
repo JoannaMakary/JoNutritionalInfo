@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 
+from apis.do_get_food import get_food, get_food_info, find_food_keys
+
 root = tk.Tk()
 # The values I have set my window size to be
 windowWidth = 600
@@ -25,6 +27,7 @@ recipe_var = ScrolledText(root, font=("Calibre 15"), height=20, width=40)
 def submit():
     recipe = recipe_var.get('1.0', 'end-1c')
     print("Your recipe: " + recipe)
+    get_food(recipe)
 
 # Creating a label for the recipe
 recipe_label = tk.Label(root, fg='#424860', bg='#b0bfff', text = 'Enter your recipe', font=('calibre', 12, 'bold'))
@@ -42,6 +45,6 @@ ing_btn = tk.Button(root, text = 'Add ingredient nutrition', command = submit)
 recipe_label.pack()
 recipe_var.pack()
 sub_btn.pack(pady=5)
-ing_btn.pack( pady=15 )
+ing_btn.pack(pady=15)
 
 root.mainloop()
