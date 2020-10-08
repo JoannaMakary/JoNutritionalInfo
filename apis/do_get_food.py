@@ -10,6 +10,7 @@ daily_cholestrol = 300
 daily_sodium = 2400
 daily_carbs = 300
 daily_fibre = 25
+daily_sugar = 100
 daily_vitaminA = 1000
 daily_vitaminC = 60
 daily_calcium = 1100
@@ -81,29 +82,31 @@ def get_food_info():
 
     find_food_keys()
 
-    print("Calories: ")
+    print("Calories ")
     # Prints out the Calories of requested food item
     food_calories = data["foods"][0]["foodNutrients"][calorie_index]["value"]
     print(food_calories)
 
     import results
-    results.print_something("Calories: ", food_calories, "")
+    results.print_table()
+    results.print_nutrition("Calories / Calories ", food_calories, "", "")
 
     print("Fat/Lipides: (g)")
     # Prints out the Fat of requested food item
     food_fat = data["foods"][0]["foodNutrients"][fat_index]["value"]
     print(food_fat)
     # Divide food fat by daily fat and get % for daily value
-    print(str(round((food_fat)/(daily_fat), 2) * 100) + " %")
-    results.print_something("Fat: ", food_fat, " g")
+    fat_percent = str(int(round((food_fat)/(daily_fat), 2) * 100)) + " %"
+    results.print_nutrition("Fat / Lipides ", food_fat, " g", fat_percent)
 
     # Prints out the Saturated Fat of requested food item
     print("+ Saturated/Saturés (g): ")
     food_satFat = data["foods"][0]["foodNutrients"][satFat_index]["value"]
     print(food_satFat)
     # Divide food saturated fat by daily saturated fat and get % for daily value
-    print(str(round((food_satFat)/(daily_satFat), 2) * 100) + " %")
-    results.print_something("    Saturated Fat: ", food_satFat, " g")
+    satFat_percent = str(int(round((food_satFat)/(daily_satFat), 2) * 100)) + " %"
+    print(satFat_percent)
+    results.print_nutrition("    Saturated / Saturés ", food_satFat, " g", satFat_percent)
 
     # Prints out the Trans Fat of requested food item
     print("+ Trans/trans (g): ")
@@ -114,78 +117,84 @@ def get_food_info():
     else:
         food_transFat = 0
         print(food_transFat)
-    results.print_something("    + Trans Fat: ", food_transFat, " g")
+    results.print_nutrition("    + Trans / trans: ", food_transFat, " g", "")
 
     # Prints out the Cholesterol of requested food item
     print("Cholesterol/Cholestérol: (mg)")
     food_cholesterol = data["foods"][0]["foodNutrients"][chlstrl_index]["value"]
     print(food_cholesterol)
     # Divide food cholesterol by daily cholesterol and get % for daily value
-    print(str(round((food_cholesterol)/(daily_cholestrol), 2) * 100) + " %")
-    results.print_something("Cholesterol: ", food_cholesterol, " g")
+    cholesterol_percent = str(int(round((food_cholesterol)/(daily_cholestrol), 2) * 100)) + " %"
+    print(cholesterol_percent)
+    results.print_nutrition("Cholesterol / Cholestérol ", food_cholesterol, " g", cholesterol_percent)
 
     # Prints out the Sodium of requested food item
     print("Sodium/Sodium: (mg)")
     food_sodium = data["foods"][0]["foodNutrients"][sodium_index]["value"]
     print(food_sodium)
     # Divide food sodium by daily sodium and get % for daily value
-    print(str(round((food_sodium)/(daily_sodium), 2) * 100) + " %")
-    results.print_something("Sodium: ", food_sodium, " mg")
+    sodium_percent = str(int(round((food_sodium)/(daily_sodium), 2) * 100)) + " %"
+    print(sodium_percent)
+    results.print_nutrition("Sodium / Sodium ", food_sodium, " mg", sodium_percent)
 
     # Prints out the Carbohydrates of requested food item
     print("Carbohydrate/Glucides: (g)")
     food_carbs = data["foods"][0]["foodNutrients"][carb_index]["value"]
     print(food_carbs)
-    # Divide food carbs by daily carbs and get % for daily value
-    print(str(round((food_carbs)/(daily_carbs), 2) * 100) + " %")
-    results.print_something("Carbohydrate: ", food_carbs, " g")
+    results.print_nutrition("Carbohydrate / Glucides ", food_carbs, " g", "")
 
     # Prints out the Fibre of requested food item
     print("Fibre/Fibres: (g)")
     food_fibre = data["foods"][0]["foodNutrients"][fibre_index]["value"]
     print(food_fibre)
     # Divide food fibre by daily fibre and get % for daily value
-    print(str(round((food_fibre)/(daily_fibre), 2) * 100) + " %")
-    results.print_something("Fibre: ", food_fibre, " g")
+    fibre_percent = str(int(round((food_fibre)/(daily_fibre), 2) * 100)) + " %"
+    print(fibre_percent)
+    results.print_nutrition("    Fibre / Fibres ", food_fibre, " g", fibre_percent)
 
     # Prints out the Sugars of requested food item
     print("Sugars/Sucres: (g)")
     food_sugar = data["foods"][0]["foodNutrients"][sugar_index]["value"]
     print(food_sugar)
-    results.print_something("Sugars: ", food_sugar, " g")
+    sugar_percent = str(int(round((food_sugar)/(daily_sugar), 2) * 100)) + " %"
+    results.print_nutrition("    Sugars / Sucres ", food_sugar, " g", sugar_percent)
 
     # Prints out the Protein of requested food item
     print("Protein/Protéines: (g)")
     food_protein = data["foods"][0]["foodNutrients"][protein_index]["value"]
     print(food_protein)
-    results.print_something("Protein: ", food_protein, " g")
-
-    # Prints out the Potassium of requested food item
-    print("Potassium: (mg)")
-    food_potassium = data["foods"][0]["foodNutrients"][potassium_index]["value"]
-    print(food_potassium)
-    results.print_something("Potassium: ", food_potassium, " mg")
+    results.print_nutrition("Protein / Protéines ", food_protein, " g", "")
 
     # Prints out the Daily Value of Vitamin A of requested food item
     print("Vitamin A")
     food_vitaminA = data["foods"][0]["foodNutrients"][vitaminA_index]["value"]
     print(str(round((food_vitaminA)/(daily_vitaminA), 2) * 100) + " %")
+    results.print_nutrition("Vitamin A / Vitamine A ", food_vitaminA, " IU", "")
 
     # Prints out the Daily Value of VitaminC of requested food item
     print("Vitamin C")
     food_vitaminC = data["foods"][0]["foodNutrients"][vitaminC_index]["value"]
     print(str(round((food_vitaminC)/(daily_vitaminC), 2) * 100) + " %")
+    results.print_nutrition("Vitamin C / Vitamine C ", food_vitaminA, " mg", "")
+
+    # Prints out the Potassium of requested food item
+    print("Potassium: (mg)")
+    food_potassium = data["foods"][0]["foodNutrients"][potassium_index]["value"]
+    print(food_potassium)
+    results.print_nutrition("Potassium ", food_potassium, " mg", "")
 
     # Prints out the Daily Value of Calcium of requested food item
     print("Calcium: (mg)")
     food_calcium = data["foods"][0]["foodNutrients"][calcium_index]["value"]
     print(food_calcium)
-    print(str(round((food_calcium)/(daily_calcium), 2) * 100) + " %")
-    results.print_something("Calcium: ", food_fat, " mg")
+    calcium_percent = str(int(round((food_calcium)/(daily_calcium), 2) * 100)) + " %"
+    print(calcium_percent)
+    results.print_nutrition("Calcium / Calcium ", food_fat, " mg", calcium_percent)
 
     # Prints out the Daily Value of Iron of requested food item
     print("Iron: (mg)")
     food_iron = data["foods"][0]["foodNutrients"][iron_index]["value"]
     print(food_iron)
-    print(str(round((food_iron)/(daily_iron), 2) * 100) + " %")
-    results.print_something("Iron: ", food_iron, " mg")
+    iron_percent = str(int(round((food_iron)/(daily_iron), 2) * 100)) + " %"
+    print(iron_percent)
+    results.print_nutrition("Iron / Fer ", food_iron, " mg", iron_percent)
