@@ -13,6 +13,7 @@ daily_fibre = 25
 daily_sugar = 100
 daily_vitaminA = 1000
 daily_vitaminC = 60
+daily_potassium = 4700
 daily_calcium = 1100
 daily_iron = 14
 
@@ -169,19 +170,22 @@ def get_food_info():
     print("Vitamin A")
     food_vitaminA = data["foods"][0]["foodNutrients"][vitaminA_index]["value"]
     print(str(round((food_vitaminA)/(daily_vitaminA), 2) * 100) + " %")
-    results.print_nutrition("Vitamin A / Vitamine A ", food_vitaminA, " IU", "")
+    vitaminA_percent = str(int(round((food_vitaminA) / (daily_vitaminA), 2) * 100)) + " %"
+    results.print_nutrition("Vitamin A / Vitamine A ", food_vitaminA, " IU", vitaminA_percent)
 
     # Prints out the Daily Value of VitaminC of requested food item
     print("Vitamin C")
     food_vitaminC = data["foods"][0]["foodNutrients"][vitaminC_index]["value"]
     print(str(round((food_vitaminC)/(daily_vitaminC), 2) * 100) + " %")
-    results.print_nutrition("Vitamin C / Vitamine C ", food_vitaminA, " mg", "")
+    vitaminC_percent = str(int(round((food_vitaminC) / (daily_vitaminC), 2) * 100)) + " %"
+    results.print_nutrition("Vitamin C / Vitamine C ", food_vitaminA, " mg", vitaminC_percent)
 
     # Prints out the Potassium of requested food item
     print("Potassium: (mg)")
     food_potassium = data["foods"][0]["foodNutrients"][potassium_index]["value"]
     print(food_potassium)
-    results.print_nutrition("Potassium ", food_potassium, " mg", "")
+    potassium_percent = str(int(round((food_potassium) / (daily_potassium), 2) * 100)) + " %"
+    results.print_nutrition("Potassium ", food_potassium, " mg", potassium_percent)
 
     # Prints out the Daily Value of Calcium of requested food item
     print("Calcium: (mg)")
