@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
+import re
 
 root = tk.Tk()
 # The values I have set my window size to be
@@ -25,8 +26,17 @@ recipe_var = ScrolledText(root, font=("Calibre 15"), height=20, width=40)
 def submit():
     recipe = recipe_var.get('1.0', 'end-1c')
     print("Your recipe: " + recipe)
+    full_recipe = recipe.splitlines()
+    print(full_recipe)
     import apis.do_get_food as api
-    api.get_food(recipe)
+
+    full_recipe_length = len(full_recipe)
+    for i in range(full_recipe_length):
+        amount = int(re.search('\d+(?=g)', full_recipe[i])[0])
+        food_item = (re.search('(?<=\dg )(.*)', full_recipe[i])[0])
+        api.get_food(food_item, amount)
+
+    api.print_total()
 
 # Creating a label for the recipe
 recipe_label = tk.Label(root, fg='#424860', bg='#b0bfff', text = 'Enter your recipe', font=('calibre', 12, 'bold'))

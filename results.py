@@ -17,16 +17,13 @@ root.iconbitmap('joicon.ico')
 root.geometry("600x600+{}+{}".format(positionRight, positionDown))
 root['background']='#b0bfff'
 
-frame = tk.Frame(root, bg='#ffffff', width=400, height=400, bd=1, highlightthickness=2,
-    highlightcolor="#000000",
-    highlightbackground="#000000",
-    borderwidth=2)
-frame.pack()
+frame = tk.Frame(root, bg='#ffffff', width=400, height=400, bd=1, highlightthickness=2, highlightcolor="#000000",highlightbackground="#000000", borderwidth=2, pady=2)
+frame.pack(pady=35)
 
-def print_table():
+def print_table(amount):
     nutrition_facts = tk.Label(frame, fg='#000000', bg='#ffffff', justify=tk.LEFT, width=20, anchor=tk.NW, font=('helvetica', 20, 'bold'), text="Nutrition Facts")
     valeur_nutritive = tk.Label(frame, fg='#000000', bg='#ffffff', justify=tk.LEFT, width=20, anchor=tk.NW, font=('helvetica', 20, 'bold'), text="Valeur nutritive")
-    serving_size = tk.Label(frame, fg='#000000', bg='#ffffff', justify=tk.LEFT, width=38, anchor=tk.NW, font=('helvetica', 13, 'normal'), text="Per 100 g / par 100 g")
+    serving_size = tk.Label(frame, fg='#000000', bg='#ffffff', justify=tk.LEFT, width=38, anchor=tk.NW, font=('helvetica', 13, 'normal'), text="Per " + str(amount) + " g / par " + str(amount) + " g")
     nutrition_facts.pack()
     valeur_nutritive.pack()
     serving_size.pack()
@@ -56,24 +53,24 @@ def print_nutrition(field, value, ending, percentage):
         nutrition_text.tag_add("BOLD", "1.0", "end")
     if (field == "Fat / Lipides "):
         nutrition_text.tag_add("BOLD", "1.0", "1.13")
-        nutrition_text.tag_add("BOLD", "1.25", "end")
+        nutrition_text.tag_add("BOLD", "1.22", "end")
     if (field == "    Saturated / Saturés "):
         nutrition_text.tag_add("BOLD", "1.30", "end")
     if (field == "Cholesterol / Cholestérol "):
         nutrition_text.tag_add("BOLD", "1.0", "1.25")
-        nutrition_text.tag_add("BOLD", "1.36", "end")
+        nutrition_text.tag_add("BOLD", "1.29", "end")
     if (field == "Sodium / Sodium "):
         nutrition_text.tag_add("BOLD", "1.0", "1.15")
         nutrition_text.tag_add("BOLD", "1.28", "end")
     if (field == "Carbohydrate / Glucides "):
         nutrition_text.tag_add("BOLD", "1.0", "1.23")
     if (field == "    Fibre / Fibres " or field == "    Sugars / Sucres "):
-        nutrition_text.tag_add("BOLD", "1.30", "end")
+        nutrition_text.tag_add("BOLD", "1.24", "end")
     if (field == "Protein / Protéines "):
         nutrition_text.tag_add("BOLD", "1.0", "1.19")
 
     if (field == "Vitamin A / Vitamine A " or field == "Vitamin C / Vitamine C " or field == "Calcium / Calcium "):
-        nutrition_text.tag_add("BOLD", "1.30", "end")
+        nutrition_text.tag_add("BOLD", "1.29", "end")
     if (field == "Potassium " or field == "Iron / Fer "):
         nutrition_text.tag_add("BOLD", "1.20", "end")
 
